@@ -10,7 +10,7 @@
 
 2. Core primitive types in typescript are all lowercase like number, string, boolean and not Number, String and Boolean
 
-3. Typescript has type inference means it tries to compute the datatype of variable using all the  available information like
+3. Typescript has type inference means it tries to compute the datatype of variable using all the available information like
         - Here we are not defining the type of result variable but if we check the typeof result then we will find it as number
 ```
 function add(n1: number, n2: number) {
@@ -50,55 +50,55 @@ activities.push(123);           // error
 
 6. Tuple
     - fixed array
-    - let say we want a role to have exactly 2 values with first as a number and second as a string
+    - let say we want a role named array to have exactly 2 values with first as a number and second as a string
     - So the syntax to mark a variable tuple becomes [number, string]
     - There is an issue with Typescript tuples that we can still push a new element
 ```
-const person: {
-    name: string;
-    age: number;
-    role: [number, string];
-}= {
-    name: 'Rohan',
-    age: 31,
-    role: [2, 'admin]
+    const person: {
+        name: string;
+        age: number;
+        role: [number, string];
+    }= {
+        name: 'Rohan',
+        age: 31,
+        role: [2, 'admin]
 
-}
+    }
 
-person.role[1] = 10;        // compilaation error
-person.role.push('admin')   // works but not good
-person.role = [3, 'developer']  // works
+    person.role[1] = 10;        // compilaation error
+    person.role.push('admin')   // works but not good
+    person.role = [3, 'developer']  // works
 
 ```
 
 7. Enums
 
 ```
-enum Role { ADMIN, READ_ONLY, AUTHOR};
+    enum Role { ADMIN, READ_ONLY, AUTHOR};
 
-OR
-enum Role { ADMIN=1, READ_ONY=10, AUTHOR=23};  // values can be of any type like numbers, string, etc
+    OR
+    enum Role { ADMIN=1, READ_ONY=10, AUTHOR=23};  // values can be of any type like numbers, string, etc
 
-const person: {
-    name: string;
-    age: number;
-    role: Role;
-}= {
-    name: 'Rohan',
-    age: 31,
-    role: Role.ADMIN
+    const person: {
+        name: string;
+        age: number;
+        role: Role;
+    }= {
+        name: 'Rohan',
+        age: 31,
+        role: Role.ADMIN
 
-}
+    }
 
 ```
 
 8. Any type
     - can set any type to a variable
 ```
-const arr: any[] = [];
+    const arr: any[] = [];
 
-arr.push(1);
-arr.push('test');
+    arr.push(1);
+    arr.push('test');
 
 ```
 
@@ -106,9 +106,9 @@ arr.push('test');
     - Setting more than 1 data type for a variable
 
 ```
-let a : string | number;
-a = 10;     // works
-a = 'test'  // works
+    let a : string | number;
+    a = 10;     // works
+    a = 'test'  // works
 
 ```
 
@@ -147,13 +147,13 @@ function add(n1: number, n2: number): number {
     - defined the return type as function with the return type of that function
 
 ```
-function add(n1:number, n2: number) {
-    return n1 + n2;
-}
+    function add(n1:number, n2: number) {
+        return n1 + n2;
+    }
 
-let combine: (a: number, b: number) => number = add;
+    let combine: (a: number, b: number) => number = add;
 
-combine(8,8);       // 16
+    combine(8,8);       // 16
 
 ```
 
@@ -185,9 +185,9 @@ combine(8,8);       // 16
     - Used for function that does not return anything
 
 ```
-function print(value: string): never {
-    console.log(value);
-}
+    function print(value: string): never {
+        console.log(value);
+    }
 
 ```
 

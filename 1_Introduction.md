@@ -20,6 +20,6 @@
     - Mega programming features like Decorators
     - Rich configuration Options
 
-7. Javascript is dynamic typed means the data type of a variable can be changed whereas Typescript is statuc typed, once declared it cannot be changed.
+7. Javascript is dynamic typed means the data type of a variable can be changed whereas Typescript is static typed, once declared it cannot be changed.
 
 8. Typescript types are checked during the compile time where as Javascript types are checked during the run time.

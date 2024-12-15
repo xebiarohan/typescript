@@ -6,18 +6,17 @@
     - tsc --init        // generates the tsconfig file
     - tsc -w              // compiles the whole project
 
-3. Exclure ts  files from compiling
+3. Excludes ts files from compiling
     - in tsconfig file we can add the name of the file/folder in the excludes array
     - Example all the ts files in node_modules
     - we can pass regex also in it
 ```
-{
-  "compilerOptions": {...},
-  "exclude": [
-    "node_modules"
-  ]
-}
-
+    {
+      "compilerOptions": {...},
+      "exclude": [
+        "node_modules"
+      ]
+    }
 ```
 
 4. Include file in compilation
@@ -25,17 +24,16 @@
     - best practice is not to add it if you want all your files to be compiled
 
 ```
-{
-  "compilerOptions": {...},
-  "exclude": [
-    "node_modules"
-  ],
-  "include" {
-    "app.ts",
-    "analytics.ts"
-  }
-}
-
+    {
+      "compilerOptions": {...},
+      "exclude": [
+        "node_modules"
+      ],
+      "include" {
+        "app.ts",
+        "analytics.ts"
+      }
+    }
 ```
 
 5. Compiler options
@@ -43,9 +41,9 @@
     - lib - tells which features by default typescript knows , if we dont specify any value then all the feature of target is added to lib
             - default setup is equal to
 ```
-            "lib": [
-                "dom", "es6", "dom.iterable", "scdripthost"
-            ]
+    "lib": [
+        "dom", "es6", "dom.iterable", "scdripthost"
+    ]
 
 ```
 

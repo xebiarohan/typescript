@@ -1,0 +1,132 @@
+1. Examples
+
+```
+    const names: Array<number> = [];
+    const names: Array<number | string> = [];
+
+    const promise: Promise<string> = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('This is done');
+        },3000);
+    })
+
+```
+
+2. Generic function
+   - if we do this then the we will know the type of the return function that it contains 2 inner-objects of type T and U.
+   - if we use 'object' instead of T and U then the return object will be just an object without knowing its inner objects.
+   - if we know the inner objects then we can use the dot notation to access them.
+
+```
+    function merge<T,U>(objA: T, objB: U) {
+        return Object.assign(objA, objB);
+    }
+
+```
+
+3. we can add constraints to make sure the type of values we can pass to the generics type
+   - like if we want to make it object only, then we can extends the value with object
+   - you can extend with classes like
+     - Person (custom class)
+     - string
+     - string | number (union type)
+     - etc
+
+```
+    function merge<T extends object, U extends object>(objA: T, objB: U) {
+        return Object.assign(objA, objB);
+    }
+
+```
+
+4. Another generic function example
+
+```
+    interface Lengthy {
+        length: number;
+    }
+
+    function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
+        let description = 'Got no value.';
+        if(element.length > 0) {
+            description = 'Got some value : ' + element.length;
+        }
+        return [element, description];
+    }
+
+    console.log(countAndDescribe('Hi There!'));  // ['Hi There', 'Got some value 8']
+
+```
+
+5. keyof constraint
+
+```
+    function extractAndConvert<T extends object, U extends keyof T>(obj: object, key: stirng) {
+        return obj[key];
+    }
+
+    extractAndConvert({name: 'Max'}, 'name');   // works
+    extractAndConvert({name: 'Max'}, 'firstName');  // compilation error
+
+```
+
+6. Generic Classes
+   - Generics classes are better with primitives like number, string, boolean etc and not with objects
+
+```
+    class DataStorage<T> {
+        private data: T[] = [];
+
+        addItem(item: T) {
+            this.data.push(item);
+        }
+
+        removeItem(item: T) {
+            this.data.splice(this.data.indexOf(item),1);        // if we use objects in generic class then the index will always be 0
+        }
+
+        getItems(): T[] {
+            return [...this.data];
+        }
+    }
+
+    const textStorage = new DataStorage<string>();
+    const numberStorage = new DataStorage<number>();
+
+```
+
+7. Generic Utiity Types
+   - Partial<data-type> it tells an object will be of given data-type even if currently it is not satisfying all its property
+   - Readonly type
+   - other utility types : https://www.typescriptlang.org/docs/handbook/utility-types.html
+
+```
+
+    interface CourseGoal {
+        title: string;
+        description: string;
+        completeUntil: Date;
+    }
+
+
+
+    function createCourseGoal(title: string, description: string, date: Date): CourseGoal {
+        return {title: title, description: description, completeUntil: date};
+    }
+
+    OR
+
+    function createCourseGoal(title: string, description: string, date: Date): CourseGoal {
+        let courseGoal: Partial<CourseGoal> = {};
+        courseGoal.title = title;
+        courseGoal.description = description;
+        courseGoal.completeUntil = date;
+        return courseGoal as CourseGoal;
+    }
+
+
+    const names: Readonly<string[]> = ['a','b'];
+    names.push('c');    // compilation error
+    names.pop();       // compilation error
+
+```

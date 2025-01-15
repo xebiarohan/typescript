@@ -110,3 +110,65 @@ OR
 
 const userInputElement = document.getElementById('user-input')! as HTMLInputElement;
 ```
+
+5. Index properties
+    - properties which are flexible about the name
+    - we cannot add any other property in the object that does not satisfy the condition like
+    - we can add id of type string but we cannot add id of type number
+
+```
+    interface ErrorContainer {
+        id:  number;    // error
+        id: string;
+        [prop: string]: string;     // it means the object must contains a property that must be a string and the value of that property 
+                                    // must also be a string
+    }
+
+    const a: ErrorContainer = {};      // valid
+    const b: ErrorContainer = { error : 'Some error'} // valid
+    const c: ErrorContainer = { error: 'some error', message: 'some message'} // valid
+    const d : ErrorContainer = { message: 1}    // Invalid
+
+```
+
+6. Function overloading
+    - Calling a same function with different parameters
+    - just add the function declaration on top of other declaration
+
+```
+
+    function add(a: number, b: number): number;
+    function add (a: Combinable, b: Combinable) {
+        if(typeof a === 'string' || typeof b === 'string') {
+            return a.toString() + b.toString();
+        }
+        return a + b;
+    }
+
+
+    const result =  add(10,20);     // type of result will be number
+
+```
+
+7. Optional chaining
+    - Used when we are not sure that some property of a nested data object (like jsonobject) is null.
+    - like we want to fetch user.job.tile (user can be null, job can be null, etc)
+    - Syntax '?'
+    - If will not try to access the statement after the ? when the first part is null or undefined
+
+```
+
+    console.log(user?.job?.title);
+
+```
+
+8. Nullish Coalescing
+    - It checks if the value is null or undefined then set the default value
+    - Empty string considers as true value and will be used (default value is not set)
+
+```
+    let value = null;
+
+    let result = value ?? 'DEFAULT';
+
+```

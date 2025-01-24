@@ -54,6 +54,11 @@ other example
 
     let user: Employee | Admin;
 
+    user1 = {
+        name: 'rohan',
+        privileges: []
+    }
+
     if('priviledge' in user) {
         ...
     }
@@ -99,16 +104,16 @@ other example
 4. Type casting
     - There are 2 syntax
         - using <> in front of any variable
-        - Using as syntax
+        - Using 'as' syntax
         - ! is used to mark that the value can never be null
     - If the type casting fails then we can get a run time error
 
 ```
-const userInputElement = <HTMLInputElement>document.getElementById('user-input')!;
+    const userInputElement = <HTMLInputElement>document.getElementById('user-input')!;
 
-OR
+    OR
 
-const userInputElement = document.getElementById('user-input')! as HTMLInputElement;
+    const userInputElement = document.getElementById('user-input')! as HTMLInputElement;
 ```
 
 5. Index properties
@@ -120,8 +125,7 @@ const userInputElement = document.getElementById('user-input')! as HTMLInputElem
     interface ErrorContainer {
         id:  number;    // error
         id: string;
-        [prop: string]: string;     // it means the object must contains a property that must be a string and the value of that property 
-                                    // must also be a string
+        [prop: string]: string;     // it means the object must only contains properties with key and value of string type
     }
 
     const a: ErrorContainer = {};      // valid
